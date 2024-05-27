@@ -35,7 +35,6 @@ SECRET_KEY = os.environ.get(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if ENV == "PROD" else True
-
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 # Authentication user
@@ -179,10 +178,12 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Optional: Set refresh token duration
 }
 
-CORS_ALLOWED_ORIGINS = [
-"http://localhost:3000",
-"http://127.0.0.1:3000"
-]
+#CORS_ALLOWED_ORIGINS = [
+#"http://localhost:3000",
+#"http://127.0.0.1:3000"
+#]
+
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
 
 # Managing Media and uploads
 
@@ -191,7 +192,7 @@ CORS_ALLOWED_ORIGINS = [
 # ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_ROOT = BASE_DIR / 'uploads'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'uploads'
 DEFAULT_AVATAR_URL = 'http://localhost:8000/media/images/default_avatar.jpg'
 # DEFAULT_AVATAR_URL = 'https://www.svgrepo.com/show/61986/avatar.svg'

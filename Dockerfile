@@ -25,7 +25,10 @@ RUN pip install python-dotenv
 # copy project
 COPY . .
 
-# EXPOSE 8000
+#EXPOSE 8000
+#RUN chmod +x deployment-service
+#CMD ["python", "manage.py", "migrate"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-# CMD ["python", "manage.py", "migrate"]
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# command to run the application (chatgpt update)
+CMD ["gunicorn", "innovatics_elearning.wsgi:application", "--bind", "0.0.0.0:8000"]
